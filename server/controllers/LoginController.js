@@ -3,7 +3,6 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
-
 const isLoginValid = (email, password) => {
     const errorList = [];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,8 +60,7 @@ const loginUser = (req, res) => {
                             "userId": user._id
                         };
 
-                        const token = jwt.sign({ id: user._id, userType: user.userType }, process.env.SECRET_KEY, { expiresIn: "365d" });
-                        res.json({ message: "success", user: currentUser, token: token });
+                        res.json({ message: "success", user: currentUser });
                     }
                 });
             }
@@ -73,4 +71,3 @@ const loginUser = (req, res) => {
 module.exports = {
     loginUser
 }
-

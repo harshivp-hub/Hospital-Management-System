@@ -26,15 +26,12 @@ const ProfileRoute = require("./routes/ProfileRoute.js");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGOCONNECTION, { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true });
 
-
-app.listen(process.env.PORT, () => {
-    console.log("App listening on port " + process.env.PORT);
-})
-
+app.listen(process.env.PORT || 3001, () => {
+    console.log("App listening on port " + (process.env.PORT || 3001));
+});
 app.use(LoginRegisterRoute);
 app.use(DashboardRoute);
 app.use(UserRoute);

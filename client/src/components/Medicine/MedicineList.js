@@ -61,7 +61,7 @@ function MedicineList() {
                             <h4 className="page-title">Medicine</h4>
                         </div>
                         <div className="col-sm-8 col-9 text-right m-b-20">
-                            <Link to="/medicines/add" className="btn btn-primary float-right btn-rounded">
+                            <Link to="/medicines/adds" className="btn btn-primary float-right btn-rounded">
                                 <i className="fa fa-plus"></i> Add Medicine
                             </Link>
                         </div>
@@ -83,7 +83,7 @@ function MedicineList() {
                         </div>
                     </form>
                     <MedicineTable medicineList={medicines} deleteMedicine={deleteMedicine} />
-                    {/* <div className="row">
+                    { <div className="row">
                         <div className="col-md-12">
                             <div className="table-responsive">
                                 <table className="table table-striped custom-table">
@@ -116,7 +116,7 @@ function MedicineList() {
                                 </table>
                             </div>
                         </div>
-                    </div> */}
+                    </div> }
                 </div>
                 <ErrorDialogueBox
                     open={errorDialogueBoxOpen}

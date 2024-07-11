@@ -50,21 +50,21 @@ import DoctorProfile from './components/Profile/DoctorProfile';
 import PatientProfile from './components/Profile/PatientProfile';
 import AdminProfile from './components/Profile/AdminProfile';
 
-import Login from './components/Login/Login';
+
 import PatientHistory from './components/Patient/PatientHistory';
 
 const NotFound = () => <h2 style={{margin:'70px'}}>This Path is not available</h2>
 
 function ProtectedAdminRoute({children}) {
     const {currentUser} = useContext(UserContext);
-    if (currentUser.userType == "Admin") {
+    if (currentUser.userType === "Admin") {
         return children ;
     }
 }
 
 function ProtectedStaffRoute({children}) {
     const {currentUser} = useContext(UserContext);
-    if (currentUser.userType == "Admin" || currentUser.userType == "Doctor") {
+    if (currentUser.userType === "Admin" || currentUser.userType === "Doctor") {
         return children;
     }
 }
@@ -75,11 +75,11 @@ export default function PageRoutes(){
         <Routes>
             <Route path='/' element= {<Dashboard />} >
                 <Route index element= {
-                    currentUser.userType == "Admin"?
+                    currentUser.userType === "Admin"?
                         <AdminDashboard />:
-                    currentUser.userType == "Doctor"?
+                    currentUser.userType === "Doctor"?
                         <DoctorDashboard />:
-                    currentUser.userType == "Patient"? 
+                    currentUser.userType === "Patient"? 
                         <PatientDashboard />:
                     <div />} 
                 />
@@ -103,7 +103,7 @@ export default function PageRoutes(){
 
                 <Route path='medicines' element= {   <Medicine /> } >
                     <Route index element= {<ProtectedStaffRoute> <MedicineList /> </ProtectedStaffRoute>} />
-                    <Route path='add' element={ <ProtectedAdminRoute> <AddMedicine /> </ProtectedAdminRoute> } />
+                    <Route path='adds' element={ <ProtectedAdminRoute> <AddMedicine /> </ProtectedAdminRoute> } />
                     <Route path="edit/:id" element={<ProtectedAdminRoute> <EditMedicine /></ProtectedAdminRoute>} />
                 </Route>
 
@@ -119,21 +119,21 @@ export default function PageRoutes(){
                 
 
                 <Route path='appointments' element= {
-                    currentUser.userType == "Admin"?
+                    currentUser.userType === "Admin"?
                         <AdminAppointment />:
-                    currentUser.userType == "Doctor"?
+                    currentUser.userType === "Doctor"?
                         <DoctorAppointment />:
-                    currentUser.userType == "Patient"? 
+                    currentUser.userType ==="Patient"? 
                         <PatientAppointment />:
                     <div/>} 
                 />
 
                 <Route path='profile' element= {
-                    currentUser.userType == "Admin"?
+                    currentUser.userType === "Admin"?
                     <AdminProfile />:
-                    currentUser.userType == "Doctor"?
+                    currentUser.userType === "Doctor"?
                         <DoctorProfile />:
-                    currentUser.userType == "Patient"? 
+                    currentUser.userType === "Patient"? 
                         <PatientProfile />:
                     <div/>} 
                 />
